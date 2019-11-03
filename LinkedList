@@ -1,0 +1,65 @@
+"""Code for each element in Linked List."""
+class Element(object):
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+"""Linked List Class. """"
+class LinkedList(object):
+    def __init__(self, head=None):
+        self.head = head
+"""Adding New element at end of Linked List"""
+    def append(self, new_element):
+            current = self.head
+            if self.head:
+                while current.next:
+                    current = current.next
+                current.next = new_element
+            else:
+                self.head = new_element
+                
+    def get_position(self, position):
+        """Getting element from particular position 
+        and returning the position else returning None """
+        current = self.head;
+        if(position < 1):
+            return None
+        if(current and position>=1):
+            i=1;
+            while current and i<=position:
+                if(i == position):
+                    return current
+                current = current.next;
+                i+=1;
+     
+     def insert(self, new_element, position):
+        """Insert a new node at the given position.
+        Assume the first position is "1".
+        Inserting at position 3 means between
+        the 2nd and 3rd elements."""
+        current = self.head;
+        i=1;
+        if current:
+            while current.next and i<= position:
+                if i == position-1:
+                    new_element.next = current.next;
+                    current.next = new_element
+                i+=1;
+                current = current.next
+            
+        pass
+        
+        
+     def delete(self, value):
+        """Delete the first node with a given value."""
+        current = self.head;
+        previous = None;
+        if self.head:
+            while(current.next and current.value!=value):
+                previous = current;
+                current = current.next;
+            if(current.value == value):
+                if(previous):
+                    previous.next = current.next;
+                else:
+                    self.head = current.next
+        
